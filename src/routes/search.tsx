@@ -7,7 +7,12 @@ import { ProviderCard } from "@/components/ProviderCard";
 import { CATEGORIES, type Provider } from "@/lib/oneslot";
 import { cn } from "@/lib/utils";
 
-type SearchParams = { q?: string; category?: string; sort?: string; maxPrice?: number };
+type SearchParams = {
+  q?: string | undefined;
+  category?: string | undefined;
+  sort?: string | undefined;
+  maxPrice?: number | undefined;
+};
 
 export const Route = createFileRoute("/search")({
   validateSearch: (s: Record<string, unknown>): SearchParams => ({
