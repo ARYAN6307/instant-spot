@@ -18,6 +18,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardBookingsRouteImport } from './routes/dashboard.bookings'
+import { Route as DashboardCustomersRouteImport } from './routes/dashboard.customers'
 import { Route as DashboardListingRouteImport } from './routes/dashboard.listing'
 import { Route as DashboardServicesRouteImport } from './routes/dashboard.services'
 import { Route as DashboardSlotsRouteImport } from './routes/dashboard.slots'
@@ -68,6 +69,11 @@ const DashboardBookingsRoute = DashboardBookingsRouteImport.update({
   path: '/bookings',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardCustomersRoute = DashboardCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardListingRoute = DashboardListingRouteImport.update({
   id: '/listing',
   path: '/listing',
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
   '/dashboard/bookings': typeof DashboardBookingsRoute
+  '/dashboard/customers': typeof DashboardCustomersRoute
   '/dashboard/listing': typeof DashboardListingRoute
   '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/slots': typeof DashboardSlotsRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
   '/dashboard/bookings': typeof DashboardBookingsRoute
+  '/dashboard/customers': typeof DashboardCustomersRoute
   '/dashboard/listing': typeof DashboardListingRoute
   '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/slots': typeof DashboardSlotsRoute
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
   '/dashboard/bookings': typeof DashboardBookingsRoute
+  '/dashboard/customers': typeof DashboardCustomersRoute
   '/dashboard/listing': typeof DashboardListingRoute
   '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/slots': typeof DashboardSlotsRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/search'
     | '/dashboard/bookings'
+    | '/dashboard/customers'
     | '/dashboard/listing'
     | '/dashboard/services'
     | '/dashboard/slots'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/search'
     | '/dashboard/bookings'
+    | '/dashboard/customers'
     | '/dashboard/listing'
     | '/dashboard/services'
     | '/dashboard/slots'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/search'
     | '/dashboard/bookings'
+    | '/dashboard/customers'
     | '/dashboard/listing'
     | '/dashboard/services'
     | '/dashboard/slots'
@@ -257,6 +269,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardBookingsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/customers': {
+      id: '/dashboard/customers'
+      path: '/customers'
+      fullPath: '/dashboard/customers'
+      preLoaderRoute: typeof DashboardCustomersRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/listing': {
       id: '/dashboard/listing'
       path: '/listing'
@@ -290,6 +309,7 @@ declare module '@tanstack/react-router' {
 
 interface DashboardRouteChildren {
   DashboardBookingsRoute: typeof DashboardBookingsRoute
+  DashboardCustomersRoute: typeof DashboardCustomersRoute
   DashboardListingRoute: typeof DashboardListingRoute
   DashboardServicesRoute: typeof DashboardServicesRoute
   DashboardSlotsRoute: typeof DashboardSlotsRoute
@@ -298,6 +318,7 @@ interface DashboardRouteChildren {
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardBookingsRoute: DashboardBookingsRoute,
+  DashboardCustomersRoute: DashboardCustomersRoute,
   DashboardListingRoute: DashboardListingRoute,
   DashboardServicesRoute: DashboardServicesRoute,
   DashboardSlotsRoute: DashboardSlotsRoute,
