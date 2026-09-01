@@ -68,7 +68,7 @@ export function LocationSearchHeader() {
           className="mt-3 flex items-center gap-2 rounded-2xl bg-surface px-3.5 py-2.5"
           onSubmit={(e) => {
             e.preventDefault();
-            void navigate({ to: "/search", search: { q: q || undefined } });
+            void navigate({ to: "/search", search: { q: q || undefined } as { q?: string | undefined } });
           }}
         >
           <Search className="h-4 w-4 shrink-0 text-muted-foreground" />

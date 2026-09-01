@@ -46,10 +46,10 @@ function BookingsPage() {
   async function mark(id: string, status: "completed" | "cancelled") {
     if (status === "cancelled") {
       const { error } = await supabase.rpc("cancel_booking", { p_booking_id: id });
-      if (error) return toast.error(error.message);
+      if (error) { toast.error(error.message); return; }
     } else {
       const { error } = await supabase.from("bookings").update({ status }).eq("id", id);
-      if (error) return toast.error(error.message);
+      if (error) { toast.error(error.message); return; }
     }
     toast.success(`Booking ${status}`);
     void refetch();

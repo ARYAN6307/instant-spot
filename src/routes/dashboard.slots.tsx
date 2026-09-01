@@ -59,7 +59,7 @@ function SlotsPage() {
   async function addSlot() {
     if (!provider) return;
     const sid = serviceId || services[0]?.id;
-    if (!sid) return toast.error("Create a service first");
+    if (!sid) { toast.error("Create a service first"); return; }
     const start = new Date(`${date}T${time}:00`);
     const { error } = await supabase.from("slots").insert({
       provider_id: provider.id,
@@ -68,14 +68,14 @@ function SlotsPage() {
       ends_at: new Date(start.getTime() + duration * 60000).toISOString(),
       capacity,
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Slot added");
     void refetch();
   }
 
   async function remove(id: string) {
     const { error } = await supabase.from("slots").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Slot removed");
     void refetch();
   }

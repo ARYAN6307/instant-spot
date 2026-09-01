@@ -13,7 +13,7 @@ export const Route = createFileRoute("/dashboard/services")({
 
 function ServicesPage() {
   const { provider } = useMyProvider();
-  const [svc, setSvc] = useState({ name: "", price: 500, duration_mins: 60, description: "" });
+  const [svc, setSvc] = useState({ name: "", price: 500, duration_min: 60, description: "" });
   const [plan, setPlan] = useState({ name: "", price: 3000, sessions: 12, validity_days: 30 });
 
   const { data: services = [], refetch: refetchServices } = useQuery({
@@ -43,18 +43,18 @@ function ServicesPage() {
   });
 
   async function addService() {
-    if (!provider || !svc.name) return toast.error("Service name is required");
+    if (!provider || !svc.name) { toast.error("Service name is required"); return; }
     const { error } = await supabase.from("services").insert({ ...svc, provider_id: provider.id });
-    if (error) return toast.error(error.message);
-    setSvc({ name: "", price: 500, duration_mins: 60, description: "" });
+    if (error) { toast.error(error.message); return; }
+    setSvc({ name: "", price: 500, duration_min: 60, description: "" });
     toast.success("Service added");
     void refetchServices();
   }
 
   async function addPlan() {
-    if (!provider || !plan.name) return toast.error("Pass name is required");
+    if (!provider || !plan.name) { toast.error("Pass name is required"); return; }
     const { error } = await supabase.from("plans").insert({ ...plan, provider_id: provider.id });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setPlan({ name: "", price: 3000, sessions: 12, validity_days: 30 });
     toast.success("Pass added");
     void refetchPlans();
@@ -62,7 +62,7 @@ function ServicesPage() {
 
   async function del(table: "services" | "plans", id: string) {
     const { error } = await supabase.from(table).delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Removed");
     table === "services" ? void refetchServices() : void refetchPlans();
   }
@@ -82,7 +82,7 @@ function ServicesPage() {
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold">{s.name}</p>
                 <p className="text-[11px] text-muted-foreground">
-                  {s.duration_mins} mins · {rupees(s.price)}
+                  {s.duration_min} mins · {rupees(s.price)}
                 </p>
               </div>
               <button onClick={() => void del("services", s.id)} className="text-muted-foreground">
@@ -119,8 +119,8 @@ function ServicesPage() {
               className={field}
               type="number"
               placeholder="Minutes"
-              value={svc.duration_mins}
-              onChange={(e) => setSvc({ ...svc, duration_mins: Number(e.target.value) })}
+              value={svc.duration_min}
+              onChange={(e) => setSvc({ ...svc, duration_min: Number(e.target.value) })}
             />
           </div>
           <button

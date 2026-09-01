@@ -100,7 +100,7 @@ function DashboardLayout() {
           </div>
           <div className="rail mx-auto max-w-5xl px-4 pb-2.5">
             {TABS.map((t) => {
-              const active = t.exact ? pathname === t.to : pathname.startsWith(t.to);
+              const active = "exact" in t && t.exact ? pathname === t.to : pathname.startsWith(t.to);
               return (
                 <Link
                   key={t.to}
