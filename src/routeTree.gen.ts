@@ -20,6 +20,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardBookingsRouteImport } from './routes/dashboard.bookings'
 import { Route as DashboardCustomersRouteImport } from './routes/dashboard.customers'
 import { Route as DashboardListingRouteImport } from './routes/dashboard.listing'
+import { Route as DashboardReportsRouteImport } from './routes/dashboard.reports'
 import { Route as DashboardServicesRouteImport } from './routes/dashboard.services'
 import { Route as DashboardSlotsRouteImport } from './routes/dashboard.slots'
 import { Route as ProviderIdRouteImport } from './routes/provider.$id'
@@ -79,6 +80,11 @@ const DashboardListingRoute = DashboardListingRouteImport.update({
   path: '/listing',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardReportsRoute = DashboardReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardServicesRoute = DashboardServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/bookings': typeof DashboardBookingsRoute
   '/dashboard/customers': typeof DashboardCustomersRoute
   '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
   '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/slots': typeof DashboardSlotsRoute
   '/provider/$id': typeof ProviderIdRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/dashboard/bookings': typeof DashboardBookingsRoute
   '/dashboard/customers': typeof DashboardCustomersRoute
   '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
   '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/slots': typeof DashboardSlotsRoute
   '/provider/$id': typeof ProviderIdRoute
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/dashboard/bookings': typeof DashboardBookingsRoute
   '/dashboard/customers': typeof DashboardCustomersRoute
   '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
   '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/slots': typeof DashboardSlotsRoute
   '/provider/$id': typeof ProviderIdRoute
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/dashboard/bookings'
     | '/dashboard/customers'
     | '/dashboard/listing'
+    | '/dashboard/reports'
     | '/dashboard/services'
     | '/dashboard/slots'
     | '/provider/$id'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/dashboard/bookings'
     | '/dashboard/customers'
     | '/dashboard/listing'
+    | '/dashboard/reports'
     | '/dashboard/services'
     | '/dashboard/slots'
     | '/provider/$id'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/dashboard/bookings'
     | '/dashboard/customers'
     | '/dashboard/listing'
+    | '/dashboard/reports'
     | '/dashboard/services'
     | '/dashboard/slots'
     | '/provider/$id'
@@ -283,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardListingRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/reports': {
+      id: '/dashboard/reports'
+      path: '/reports'
+      fullPath: '/dashboard/reports'
+      preLoaderRoute: typeof DashboardReportsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/services': {
       id: '/dashboard/services'
       path: '/services'
@@ -311,6 +330,7 @@ interface DashboardRouteChildren {
   DashboardBookingsRoute: typeof DashboardBookingsRoute
   DashboardCustomersRoute: typeof DashboardCustomersRoute
   DashboardListingRoute: typeof DashboardListingRoute
+  DashboardReportsRoute: typeof DashboardReportsRoute
   DashboardServicesRoute: typeof DashboardServicesRoute
   DashboardSlotsRoute: typeof DashboardSlotsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -320,6 +340,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardBookingsRoute: DashboardBookingsRoute,
   DashboardCustomersRoute: DashboardCustomersRoute,
   DashboardListingRoute: DashboardListingRoute,
+  DashboardReportsRoute: DashboardReportsRoute,
   DashboardServicesRoute: DashboardServicesRoute,
   DashboardSlotsRoute: DashboardSlotsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
