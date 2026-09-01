@@ -10,33 +10,210 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BookingsRouteImport } from './routes/bookings'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as MembershipsRouteImport } from './routes/memberships'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardBookingsRouteImport } from './routes/dashboard.bookings'
+import { Route as DashboardCustomersRouteImport } from './routes/dashboard.customers'
+import { Route as DashboardListingRouteImport } from './routes/dashboard.listing'
+import { Route as DashboardReportsRouteImport } from './routes/dashboard.reports'
+import { Route as DashboardServicesRouteImport } from './routes/dashboard.services'
+import { Route as DashboardSlotsRouteImport } from './routes/dashboard.slots'
+import { Route as ProviderIdRouteImport } from './routes/provider.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsRoute = BookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipsRoute = MembershipsRouteImport.update({
+  id: '/memberships',
+  path: '/memberships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardBookingsRoute = DashboardBookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCustomersRoute = DashboardCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardListingRoute = DashboardListingRouteImport.update({
+  id: '/listing',
+  path: '/listing',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardReportsRoute = DashboardReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardServicesRoute = DashboardServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSlotsRoute = DashboardSlotsRouteImport.update({
+  id: '/slots',
+  path: '/slots',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const ProviderIdRoute = ProviderIdRouteImport.update({
+  id: '/provider/$id',
+  path: '/provider/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/memberships': typeof MembershipsRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/dashboard/bookings': typeof DashboardBookingsRoute
+  '/dashboard/customers': typeof DashboardCustomersRoute
+  '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/services': typeof DashboardServicesRoute
+  '/dashboard/slots': typeof DashboardSlotsRoute
+  '/provider/$id': typeof ProviderIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/memberships': typeof MembershipsRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/dashboard/bookings': typeof DashboardBookingsRoute
+  '/dashboard/customers': typeof DashboardCustomersRoute
+  '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/services': typeof DashboardServicesRoute
+  '/dashboard/slots': typeof DashboardSlotsRoute
+  '/provider/$id': typeof ProviderIdRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/memberships': typeof MembershipsRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/dashboard/bookings': typeof DashboardBookingsRoute
+  '/dashboard/customers': typeof DashboardCustomersRoute
+  '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/services': typeof DashboardServicesRoute
+  '/dashboard/slots': typeof DashboardSlotsRoute
+  '/provider/$id': typeof ProviderIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/bookings'
+    | '/dashboard'
+    | '/memberships'
+    | '/profile'
+    | '/search'
+    | '/dashboard/bookings'
+    | '/dashboard/customers'
+    | '/dashboard/listing'
+    | '/dashboard/reports'
+    | '/dashboard/services'
+    | '/dashboard/slots'
+    | '/provider/$id'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/bookings'
+    | '/memberships'
+    | '/profile'
+    | '/search'
+    | '/dashboard/bookings'
+    | '/dashboard/customers'
+    | '/dashboard/listing'
+    | '/dashboard/reports'
+    | '/dashboard/services'
+    | '/dashboard/slots'
+    | '/provider/$id'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/bookings'
+    | '/dashboard'
+    | '/memberships'
+    | '/profile'
+    | '/search'
+    | '/dashboard/bookings'
+    | '/dashboard/customers'
+    | '/dashboard/listing'
+    | '/dashboard/reports'
+    | '/dashboard/services'
+    | '/dashboard/slots'
+    | '/provider/$id'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  BookingsRoute: typeof BookingsRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
+  MembershipsRoute: typeof MembershipsRoute
+  ProfileRoute: typeof ProfileRoute
+  SearchRoute: typeof SearchRoute
+  ProviderIdRoute: typeof ProviderIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +225,140 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings': {
+      id: '/bookings'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof BookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memberships': {
+      id: '/memberships'
+      path: '/memberships'
+      fullPath: '/memberships'
+      preLoaderRoute: typeof MembershipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/bookings': {
+      id: '/dashboard/bookings'
+      path: '/bookings'
+      fullPath: '/dashboard/bookings'
+      preLoaderRoute: typeof DashboardBookingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/customers': {
+      id: '/dashboard/customers'
+      path: '/customers'
+      fullPath: '/dashboard/customers'
+      preLoaderRoute: typeof DashboardCustomersRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/listing': {
+      id: '/dashboard/listing'
+      path: '/listing'
+      fullPath: '/dashboard/listing'
+      preLoaderRoute: typeof DashboardListingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/reports': {
+      id: '/dashboard/reports'
+      path: '/reports'
+      fullPath: '/dashboard/reports'
+      preLoaderRoute: typeof DashboardReportsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/services': {
+      id: '/dashboard/services'
+      path: '/services'
+      fullPath: '/dashboard/services'
+      preLoaderRoute: typeof DashboardServicesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/slots': {
+      id: '/dashboard/slots'
+      path: '/slots'
+      fullPath: '/dashboard/slots'
+      preLoaderRoute: typeof DashboardSlotsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/provider/$id': {
+      id: '/provider/$id'
+      path: '/provider/$id'
+      fullPath: '/provider/$id'
+      preLoaderRoute: typeof ProviderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardBookingsRoute: typeof DashboardBookingsRoute
+  DashboardCustomersRoute: typeof DashboardCustomersRoute
+  DashboardListingRoute: typeof DashboardListingRoute
+  DashboardReportsRoute: typeof DashboardReportsRoute
+  DashboardServicesRoute: typeof DashboardServicesRoute
+  DashboardSlotsRoute: typeof DashboardSlotsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardBookingsRoute: DashboardBookingsRoute,
+  DashboardCustomersRoute: DashboardCustomersRoute,
+  DashboardListingRoute: DashboardListingRoute,
+  DashboardReportsRoute: DashboardReportsRoute,
+  DashboardServicesRoute: DashboardServicesRoute,
+  DashboardSlotsRoute: DashboardSlotsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  BookingsRoute: BookingsRoute,
+  DashboardRoute: DashboardRouteWithChildren,
+  MembershipsRoute: MembershipsRoute,
+  ProfileRoute: ProfileRoute,
+  SearchRoute: SearchRoute,
+  ProviderIdRoute: ProviderIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
