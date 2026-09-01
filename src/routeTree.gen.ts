@@ -19,6 +19,7 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardBookingsRouteImport } from './routes/dashboard.bookings'
 import { Route as DashboardListingRouteImport } from './routes/dashboard.listing'
+import { Route as DashboardSlotsRouteImport } from './routes/dashboard.slots'
 import { Route as ProviderIdRouteImport } from './routes/provider.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +72,11 @@ const DashboardListingRoute = DashboardListingRouteImport.update({
   path: '/listing',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardSlotsRoute = DashboardSlotsRouteImport.update({
+  id: '/slots',
+  path: '/slots',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const ProviderIdRoute = ProviderIdRouteImport.update({
   id: '/provider/$id',
   path: '/provider/$id',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/dashboard/bookings': typeof DashboardBookingsRoute
   '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/slots': typeof DashboardSlotsRoute
   '/provider/$id': typeof ProviderIdRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/dashboard/bookings': typeof DashboardBookingsRoute
   '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/slots': typeof DashboardSlotsRoute
   '/provider/$id': typeof ProviderIdRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/dashboard/bookings': typeof DashboardBookingsRoute
   '/dashboard/listing': typeof DashboardListingRoute
+  '/dashboard/slots': typeof DashboardSlotsRoute
   '/provider/$id': typeof ProviderIdRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/dashboard/bookings'
     | '/dashboard/listing'
+    | '/dashboard/slots'
     | '/provider/$id'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/dashboard/bookings'
     | '/dashboard/listing'
+    | '/dashboard/slots'
     | '/provider/$id'
     | '/dashboard'
   id:
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/dashboard/bookings'
     | '/dashboard/listing'
+    | '/dashboard/slots'
     | '/provider/$id'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -240,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardListingRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/slots': {
+      id: '/dashboard/slots'
+      path: '/slots'
+      fullPath: '/dashboard/slots'
+      preLoaderRoute: typeof DashboardSlotsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/provider/$id': {
       id: '/provider/$id'
       path: '/provider/$id'
@@ -253,12 +272,14 @@ declare module '@tanstack/react-router' {
 interface DashboardRouteChildren {
   DashboardBookingsRoute: typeof DashboardBookingsRoute
   DashboardListingRoute: typeof DashboardListingRoute
+  DashboardSlotsRoute: typeof DashboardSlotsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardBookingsRoute: DashboardBookingsRoute,
   DashboardListingRoute: DashboardListingRoute,
+  DashboardSlotsRoute: DashboardSlotsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
