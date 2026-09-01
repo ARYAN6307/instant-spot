@@ -17,6 +17,7 @@ import { Route as MembershipsRouteImport } from './routes/memberships'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardListingRouteImport } from './routes/dashboard.listing'
 import { Route as ProviderIdRouteImport } from './routes/provider.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardListingRoute = DashboardListingRouteImport.update({
+  id: '/listing',
+  path: '/listing',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const ProviderIdRoute = ProviderIdRouteImport.update({
   id: '/provider/$id',
   path: '/provider/$id',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/memberships': typeof MembershipsRoute
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
+  '/dashboard/listing': typeof DashboardListingRoute
   '/provider/$id': typeof ProviderIdRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/memberships': typeof MembershipsRoute
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
+  '/dashboard/listing': typeof DashboardListingRoute
   '/provider/$id': typeof ProviderIdRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/memberships': typeof MembershipsRoute
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
+  '/dashboard/listing': typeof DashboardListingRoute
   '/provider/$id': typeof ProviderIdRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/memberships'
     | '/profile'
     | '/search'
+    | '/dashboard/listing'
     | '/provider/$id'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/memberships'
     | '/profile'
     | '/search'
+    | '/dashboard/listing'
     | '/provider/$id'
     | '/dashboard'
   id:
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/memberships'
     | '/profile'
     | '/search'
+    | '/dashboard/listing'
     | '/provider/$id'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -202,6 +214,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/listing': {
+      id: '/dashboard/listing'
+      path: '/listing'
+      fullPath: '/dashboard/listing'
+      preLoaderRoute: typeof DashboardListingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/provider/$id': {
       id: '/provider/$id'
       path: '/provider/$id'
@@ -213,10 +232,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface DashboardRouteChildren {
+  DashboardListingRoute: typeof DashboardListingRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardListingRoute: DashboardListingRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
