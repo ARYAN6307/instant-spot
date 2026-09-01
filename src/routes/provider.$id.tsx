@@ -143,7 +143,7 @@ function ProviderPage() {
     mutationFn: async ({ slotId, useSub }: { slotId: string; useSub: boolean }) => {
       const { data, error } = await supabase.rpc("book_slot", {
         p_slot_id: slotId,
-        p_subscription_id: (useSub ? subs[0]?.id : undefined) as string | undefined,
+        ...(useSub && subs[0] ? { p_subscription_id: subs[0].id } : {}),
       });
       if (error) throw error;
       return data;
